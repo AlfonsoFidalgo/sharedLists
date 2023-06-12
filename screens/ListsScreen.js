@@ -1,45 +1,13 @@
-import {
-  FlatList,
-  Text,
-  View,
-  StyleSheet,
-  TouchableOpacity,
-} from 'react-native';
-import { useState } from 'react';
+import { FlatList, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { useSelector } from 'react-redux';
 import { FontAwesome } from '@expo/vector-icons';
 
 import ListItem from '../components/ListItem';
 
-const LISTS = [
-  {
-    id: 1,
-    name: 'Rewe stuff',
-    participants: 2,
-    description:
-      'Just the grocery shopping list of items that we normally buy in Rewe',
-    items: [
-      'Onions',
-      'Zuchini',
-      'Green peppers',
-      'garlic',
-      'milk',
-      'bread',
-      'bananans',
-      'yogurts',
-    ],
-  },
-  {
-    id: 2,
-    name: 'Rossmann',
-    participants: 2,
-    description:
-      "Rossmann related stuff: cat's food, cosmetics and cleaning products",
-    items: ['cats food', 'cats litter', 'tooth paste', 'washing up liquid'],
-  },
-];
-
 function ListsScreen({ navigation }) {
-  const [lists, setLists] = useState(LISTS);
+  const lists = useSelector((state) => {
+    return state.lists;
+  });
   return (
     <View style={styles.container}>
       <FlatList

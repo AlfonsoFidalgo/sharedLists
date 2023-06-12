@@ -1,14 +1,36 @@
 import { View, StyleSheet, Button } from 'react-native';
+import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
+
+import { addList } from '../store';
 import Input from '../components/Input';
 
 function ListForm() {
   const [listName, setListName] = useState('');
+  const [listDescription, setListDescription] = useState('');
   const navigation = useNavigation();
+  const dispatch = useDispatch();
 
   const handleNameInput = (input) => {
     setListName(input);
+  };
+
+  const handleDescriptionInput = (input) => {
+    setListDescription(input);
+  };
+
+  const handleAddList = () => {
+    const newList = {
+      id: 2,
+      name: listName,
+      participants: 1,
+      description: listDescription,
+      items: [],
+    };
+    const action = addList(newList);
+    dispatch(action);
+    navigation.goBack();
   };
 
   return (
@@ -18,12 +40,17 @@ function ListForm() {
         value={listName}
         onEdit={handleNameInput}
       />
+      <Input
+        label="Add an optional description:"
+        value={listDescription}
+        onEdit={handleDescriptionInput}
+      />
       <View style={styles.separator} />
       <View style={styles.buttonContainer}>
         <Button color="red" title="Cancel" onPress={navigation.goBack} />
         <Button
           title="Save"
-          onPress={() => console.log(listName)}
+          onPress={handleAddList}
           disabled={!listName.length}
         />
       </View>

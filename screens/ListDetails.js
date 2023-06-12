@@ -11,7 +11,7 @@ function ListDetails() {
       <Text style={styles.title}>{name}</Text>
       <ScrollView>
         {items.map((item) => (
-          <ListDetailItem item={item} />
+          <ListDetailItem item={item} key={item} />
         ))}
       </ScrollView>
     </View>

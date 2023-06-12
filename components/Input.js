@@ -7,6 +7,7 @@ function Input({ label, value, onEdit }) {
       <TextInput
         style={styles.input}
         keyboardType="default"
+        autoCorrect={false}
         value={value}
         onChangeText={(e) => onEdit(e)}
       />
