@@ -1,10 +1,15 @@
 import { View, TextInput, Text, StyleSheet } from 'react-native';
 
-function Input({ label }) {
+function Input({ label, value, onEdit }) {
   return (
     <View style={styles.container}>
       <Text style={styles.label}>{label}</Text>
-      <TextInput style={styles.input} keyboardType="default" />
+      <TextInput
+        style={styles.input}
+        keyboardType="default"
+        value={value}
+        onChangeText={(e) => onEdit(e)}
+      />
     </View>
   );
 }
@@ -25,6 +30,7 @@ const styles = StyleSheet.create({
   input: {
     height: 40,
     width: '100%',
+    backgroundColor: 'white',
     borderColor: '#dddddd',
     borderWidth: 1,
     borderRadius: 8,
