@@ -1,10 +1,21 @@
+import { useState } from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 
-function ListDetailItem({ item }) {
+function ListDetailItem({ item, onPress, completed }) {
+  const toggleComplete = () => {
+    onPress(item);
+  };
+
   return (
-    <View key={item} style={styles.container}>
-      <Text style={styles.itemText}>{item}</Text>
-      <Button title="Complete" style={styles.button} />
+    <View key={item.item} style={styles.container}>
+      <Text style={[completed ? styles.completed : styles.itemText]}>
+        {item.item}
+      </Text>
+      <Button
+        title={completed ? 'Uncomplete' : 'Complete'}
+        style={styles.button}
+        onPress={toggleComplete}
+      />
     </View>
   );
 }
@@ -26,6 +37,13 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     flex: 1,
+  },
+  completed: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    flex: 1,
+    textDecorationLine: 'line-through',
+    textDecorationStyle: 'solid',
   },
   button: {
     marginLeft: 8,

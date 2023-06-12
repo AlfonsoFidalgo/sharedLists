@@ -9,7 +9,10 @@ const listSlice = createSlice({
       participants: 2,
       description:
         'Food that we need to buy to provide our bodies with the right nutrients to sustain life',
-      items: ['Onions', 'Bread', 'Green peppers', 'garlic'],
+      items: [
+        { item: 'Onions', completed: true },
+        { item: 'Bread', completed: false },
+      ],
     },
   ],
   reducers: {
