@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { useRoute } from '@react-navigation/native';
-import { View, Text, StyleSheet, ScrollView, Button } from 'react-native';
+import { View, StyleSheet, ScrollView, Button } from 'react-native';
 import ListDetailItem from '../components/ListDetailItem';
 
 function ListDetails({ navigation }) {
   const route = useRoute();
-  const listId = route.params.id;
   const [items, setItems] = useState(route.params.items);
+  const [hasChanged, setHasChanged] = useState(false);
 
   const handleComplete = (item) => {
     const updatedItems = items.map((itm) => {
@@ -16,6 +16,7 @@ function ListDetails({ navigation }) {
       return itm;
     });
     setItems(updatedItems);
+    setHasChanged(true);
   };
 
   return (
@@ -34,12 +35,13 @@ function ListDetails({ navigation }) {
 
       <View style={styles.buttonContainer}>
         <Button
-          title="Share this list"
+          title="Share"
           onPress={() => console.log('to be implemented')}
         />
         <Button
           title="Save"
           onPress={() => console.log('handle save changes', items)}
+          disabled={!hasChanged}
         />
       </View>
     </View>
