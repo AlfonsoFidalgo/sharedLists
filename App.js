@@ -19,8 +19,18 @@ export default function App() {
       <Provider store={store}>
         <NavigationContainer>
           <Stack.Navigator>
-            <Stack.Screen name="Lists" component={ListsScreen} />
-            <Stack.Screen name="ListDetails" component={ListDetails} />
+            <Stack.Screen
+              name="Lists"
+              component={ListsScreen}
+              options={{ title: 'My Lists' }}
+            />
+            <Stack.Screen
+              name="ListDetails"
+              component={ListDetails}
+              options={({ route, navigation }) => ({
+                title: route.params.name,
+              })}
+            />
             <Stack.Screen name="ListForm" component={ListForm} />
             <Stack.Screen name="AddItem" component={AddItem} />
           </Stack.Navigator>

@@ -5,7 +5,6 @@ import ListDetailItem from '../components/ListDetailItem';
 
 function ListDetails({ navigation }) {
   const route = useRoute();
-  const { name } = route.params;
   const [items, setItems] = useState(route.params.items);
 
   const handleComplete = (item) => {
@@ -20,7 +19,6 @@ function ListDetails({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{name}</Text>
       <ScrollView>
         {items.map((item) => (
           <ListDetailItem
@@ -64,11 +62,6 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
     elevation: 2,
     height: '100%',
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 16,
   },
   name: {
     fontSize: 18,
