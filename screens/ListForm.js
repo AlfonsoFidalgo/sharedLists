@@ -22,7 +22,7 @@ function ListForm() {
 
   const handleAddList = () => {
     const newList = {
-      id: 2,
+      id: Math.round(Math.random() * 99999),
       name: listName,
       participants: 1,
       description: listDescription,

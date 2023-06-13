@@ -20,9 +20,14 @@ const listSlice = createSlice({
       state.push(action.payload);
     },
     addItem(state, action) {
-      const item = { item: action.payload, completed: false };
-      //TO DO: an item should be added in the correct list, on on the [0]
-      state[0].items.push(item);
+      const listId = action.payload.listId;
+      const item = { item: action.payload.newItem, completed: false };
+      const updatedLists = state.map((list) => {
+        if (list.id === listId) {
+          list.items.push(item);
+        }
+        return list;
+      });
     },
     removeList(state, action) {
       const index = state.indexOf(action.payload);

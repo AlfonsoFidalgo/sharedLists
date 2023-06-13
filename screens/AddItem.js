@@ -16,7 +16,7 @@ function AddItem({ navigation, route }) {
 
   const handleSave = () => {
     setNewItems([...newItems, newItem]);
-    const action = addItem(newItem);
+    const action = addItem({ newItem, listId: route.params.listId });
     dispatch(action);
     setNewItem('');
     console.log(route);

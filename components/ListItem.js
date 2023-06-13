@@ -1,7 +1,7 @@
 import { Text, View, StyleSheet, Pressable } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-const ListItem = ({ name, description, participants, items }) => {
+const ListItem = ({ name, id, description, participants, items }) => {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
@@ -9,6 +9,7 @@ const ListItem = ({ name, description, participants, items }) => {
         onPress={() =>
           navigation.navigate('ListDetails', {
             name,
+            id,
             description,
             participants,
             items,

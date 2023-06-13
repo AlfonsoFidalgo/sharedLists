@@ -5,6 +5,7 @@ import ListDetailItem from '../components/ListDetailItem';
 
 function ListDetails({ navigation }) {
   const route = useRoute();
+  const listId = route.params.id;
   const [items, setItems] = useState(route.params.items);
 
   const handleComplete = (item) => {
@@ -34,7 +35,7 @@ function ListDetails({ navigation }) {
       <View style={styles.buttonContainer}>
         <Button
           title="Add items"
-          onPress={() => navigation.navigate('AddItem')}
+          onPress={() => navigation.navigate('AddItem', { listId })}
         />
         <Button
           title="Save"

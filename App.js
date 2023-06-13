@@ -34,13 +34,18 @@ export default function App() {
                   <IconButton
                     icon="add"
                     size={28}
-                    onPress={() => console.log('pressed')}
+                    color={tintcolor}
+                    onPress={() => console.log(navigation.navigate('AddItem'))}
                   />
                 ),
               })}
             />
             <Stack.Screen name="ListForm" component={ListForm} />
-            <Stack.Screen name="AddItem" component={AddItem} />
+            <Stack.Screen
+              name="AddItem"
+              component={AddItem}
+              options={{ presentation: 'modal' }}
+            />
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>

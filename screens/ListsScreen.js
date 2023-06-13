@@ -15,6 +15,7 @@ function ListsScreen({ navigation }) {
         renderItem={({ item }) => (
           <ListItem
             name={item.name}
+            id={item.id}
             description={item.description}
             participants={item.participants}
             items={item.items}
