@@ -35,7 +35,13 @@ export default function App() {
                     icon="add"
                     size={28}
                     color={tintcolor}
-                    onPress={() => console.log(navigation.navigate('AddItem'))}
+                    onPress={() =>
+                      console.log(
+                        navigation.navigate('AddItem', {
+                          listId: route.params.id,
+                        })
+                      )
+                    }
                   />
                 ),
               })}
