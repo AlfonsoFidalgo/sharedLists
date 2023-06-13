@@ -1,28 +1,39 @@
 import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useRoute } from '@react-navigation/native';
-import { View, StyleSheet, ScrollView, Button } from 'react-native';
+import { View, StyleSheet, ScrollView, Button, Text } from 'react-native';
+
 import ListDetailItem from '../components/ListDetailItem';
+import { toggleCompleteItem } from '../store';
 
 function ListDetails({ navigation }) {
   const route = useRoute();
-  const [items, setItems] = useState(route.params.items);
+  const dispatch = useDispatch();
+  const listDetails = useSelector((state) => {
+    const allLists = state.lists;
+    return allLists.filter((lst) => lst.id === route.params.id)[0];
+  });
+  //   const [items, setItems] = useState(route.params.items);
   const [hasChanged, setHasChanged] = useState(false);
 
   const handleComplete = (item) => {
-    const updatedItems = items.map((itm) => {
-      if (itm.item === item.item) {
-        return { ...itm, completed: !item.completed };
-      }
-      return itm;
-    });
-    setItems(updatedItems);
+    // const updatedItems = items.map((itm) => {
+    //   if (itm.item === item.item) {
+    //     return { ...itm, completed: !item.completed };
+    //   }
+    //   return itm;
+    // });
+    // setItems(updatedItems);
+    const action = toggleCompleteItem({ item, listId: route.params.id });
+    dispatch(action);
     setHasChanged(true);
   };
 
-  return (
-    <View style={styles.container}>
+  let content = <Text>Losding...</Text>;
+  if (listDetails) {
+    content = (
       <ScrollView>
-        {items.map((item) => (
+        {listDetails.items.map((item) => (
           <ListDetailItem
             item={item}
             key={item.item}
@@ -31,6 +42,11 @@ function ListDetails({ navigation }) {
           />
         ))}
       </ScrollView>
+    );
+  }
+  return (
+    <View style={styles.container}>
+      {content}
       <View style={styles.separator} />
 
       <View style={styles.buttonContainer}>
@@ -40,7 +56,7 @@ function ListDetails({ navigation }) {
         />
         <Button
           title="Save"
-          onPress={() => console.log('handle save changes', items)}
+          onPress={() => console.log('handle save changes')}
           disabled={!hasChanged}
         />
       </View>
