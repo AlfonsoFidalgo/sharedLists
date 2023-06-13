@@ -3,7 +3,7 @@ import { useRoute } from '@react-navigation/native';
 import { View, Text, StyleSheet, ScrollView, Button } from 'react-native';
 import ListDetailItem from '../components/ListDetailItem';
 
-function ListDetails() {
+function ListDetails({ navigation }) {
   const route = useRoute();
   const { name } = route.params;
   const [items, setItems] = useState(route.params.items);
@@ -34,7 +34,10 @@ function ListDetails() {
       <View style={styles.separator} />
 
       <View style={styles.buttonContainer}>
-        <Button title="Add items" onPress={() => console.log('cancel')} />
+        <Button
+          title="Add items"
+          onPress={() => navigation.navigate('AddItem')}
+        />
         <Button
           title="Save"
           onPress={() => console.log('handle save changes')}

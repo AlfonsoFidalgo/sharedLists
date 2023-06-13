@@ -8,6 +8,7 @@ import { store } from './store';
 import ListsScreen from './screens/ListsScreen';
 import ListDetails from './screens/ListDetails';
 import ListForm from './screens/ListForm';
+import AddItem from './screens/AddItem';
 
 const Stack = createNativeStackNavigator();
 
@@ -21,6 +22,7 @@ export default function App() {
             <Stack.Screen name="Lists" component={ListsScreen} />
             <Stack.Screen name="ListDetails" component={ListDetails} />
             <Stack.Screen name="ListForm" component={ListForm} />
+            <Stack.Screen name="AddItem" component={AddItem} />
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>
