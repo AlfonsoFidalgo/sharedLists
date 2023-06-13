@@ -38,7 +38,7 @@ function ListDetails({ navigation }) {
         />
         <Button
           title="Save"
-          onPress={() => console.log('handle save changes')}
+          onPress={() => console.log('handle save changes', items)}
         />
       </View>
     </View>

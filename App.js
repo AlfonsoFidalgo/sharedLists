@@ -1,4 +1,4 @@
-import { StyleSheet, SafeAreaView } from 'react-native';
+import { StyleSheet, SafeAreaView, Text } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -9,6 +9,7 @@ import ListsScreen from './screens/ListsScreen';
 import ListDetails from './screens/ListDetails';
 import ListForm from './screens/ListForm';
 import AddItem from './screens/AddItem';
+import IconButton from './components/IconButton';
 
 const Stack = createNativeStackNavigator();
 
@@ -29,6 +30,13 @@ export default function App() {
               component={ListDetails}
               options={({ route, navigation }) => ({
                 title: route.params.name,
+                headerRight: ({ tintcolor }) => (
+                  <IconButton
+                    icon="add"
+                    size={28}
+                    onPress={() => console.log('pressed')}
+                  />
+                ),
               })}
             />
             <Stack.Screen name="ListForm" component={ListForm} />
