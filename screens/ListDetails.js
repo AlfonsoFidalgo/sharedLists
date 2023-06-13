@@ -34,8 +34,8 @@ function ListDetails({ navigation }) {
 
       <View style={styles.buttonContainer}>
         <Button
-          title="Add items"
-          onPress={() => navigation.navigate('AddItem', { listId })}
+          title="Share this list"
+          onPress={() => console.log('to be implemented')}
         />
         <Button
           title="Save"
