@@ -24,6 +24,7 @@ function ListDetails({ navigation }) {
   const handleSave = (updatedItems) => {
     const action = removeItem({ items: updatedItems, listId: route.params.id });
     dispatch(action);
+    setHasChanged(false);
   };
 
   let content = <Text>Loading...</Text>;

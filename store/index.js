@@ -38,7 +38,7 @@ const listSlice = createSlice({
 
       const list = state.filter((lst) => lst.id === listId)[0];
       const updatedItems = list.items.map((itm) => {
-        if (itm.item === item.item) {
+        if (itm.id === item.id) {
           return { ...itm, completed: !item.completed };
         }
         return itm;
