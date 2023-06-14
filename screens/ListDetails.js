@@ -4,7 +4,7 @@ import { useRoute } from '@react-navigation/native';
 import { View, StyleSheet, ScrollView, Button, Text } from 'react-native';
 
 import ListDetailItem from '../components/ListDetailItem';
-import { toggleCompleteItem } from '../store';
+import { toggleCompleteItem, removeItem } from '../store';
 
 function ListDetails({ navigation }) {
   const route = useRoute();
@@ -13,20 +13,17 @@ function ListDetails({ navigation }) {
     const allLists = state.lists;
     return allLists.filter((lst) => lst.id === route.params.id)[0];
   });
-  //   const [items, setItems] = useState(route.params.items);
   const [hasChanged, setHasChanged] = useState(false);
 
   const handleComplete = (item) => {
-    // const updatedItems = items.map((itm) => {
-    //   if (itm.item === item.item) {
-    //     return { ...itm, completed: !item.completed };
-    //   }
-    //   return itm;
-    // });
-    // setItems(updatedItems);
     const action = toggleCompleteItem({ item, listId: route.params.id });
     dispatch(action);
     setHasChanged(true);
+  };
+
+  const handleSave = (updatedItems) => {
+    const action = removeItem({ items: updatedItems, listId: route.params.id });
+    dispatch(action);
   };
 
   let content = <Text>Losding...</Text>;
@@ -56,7 +53,7 @@ function ListDetails({ navigation }) {
         />
         <Button
           title="Save"
-          onPress={() => console.log('handle save changes')}
+          onPress={() => handleSave(listDetails.items)}
           disabled={!hasChanged}
         />
       </View>

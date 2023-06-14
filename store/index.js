@@ -30,8 +30,7 @@ const listSlice = createSlice({
       });
     },
     toggleCompleteItem(state, action) {
-      const { listId } = action.payload;
-      const item = action.payload.item;
+      const { listId, item } = action.payload;
 
       const list = state.filter((lst) => lst.id === listId)[0];
       const updatedItems = list.items.map((itm) => {
@@ -41,6 +40,15 @@ const listSlice = createSlice({
         return itm;
       });
       list.items = updatedItems;
+    },
+    removeItem(state, action) {
+      const { listId, items } = action.payload;
+
+      const list = state.filter((lst) => lst.id === listId)[0];
+      uncompletedItems = items.filter((itm) => {
+        return itm.completed === false;
+      });
+      list.items = uncompletedItems;
     },
     removeList(state, action) {
       const index = state.indexOf(action.payload);
@@ -55,5 +63,6 @@ const store = configureStore({
   },
 });
 
-export const { addList, addItem, toggleCompleteItem } = listSlice.actions;
+export const { addList, addItem, toggleCompleteItem, removeItem } =
+  listSlice.actions;
 export { store };
