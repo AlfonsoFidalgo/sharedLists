@@ -26,14 +26,14 @@ function ListDetails({ navigation }) {
     dispatch(action);
   };
 
-  let content = <Text>Losding...</Text>;
+  let content = <Text>Loading...</Text>;
   if (listDetails) {
     content = (
       <ScrollView>
         {listDetails.items.map((item) => (
           <ListDetailItem
             item={item}
-            key={item.item}
+            key={item.id}
             completed={item.completed}
             onPress={handleComplete}
           />

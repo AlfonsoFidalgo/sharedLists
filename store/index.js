@@ -10,8 +10,8 @@ const listSlice = createSlice({
       description:
         'Food that we need to buy to provide our bodies with the right nutrients to sustain life',
       items: [
-        { item: 'Onions', completed: false },
-        { item: 'Bread', completed: false },
+        { item: 'Onions', completed: false, id: 34 },
+        { item: 'Bread', completed: false, id: 57 },
       ],
     },
   ],
@@ -21,7 +21,11 @@ const listSlice = createSlice({
     },
     addItem(state, action) {
       const listId = action.payload.listId;
-      const item = { item: action.payload.newItem, completed: false };
+      const item = {
+        item: action.payload.newItem,
+        completed: false,
+        id: Math.round(Math.random() * 99999),
+      };
       const updatedLists = state.map((list) => {
         if (list.id === listId) {
           list.items.push(item);

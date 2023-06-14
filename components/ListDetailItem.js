@@ -1,13 +1,13 @@
-import { useState } from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 
 function ListDetailItem({ item, onPress, completed }) {
   const toggleComplete = () => {
     onPress(item);
   };
+  console.log(item);
 
   return (
-    <View key={item.item} style={styles.container}>
+    <View key={item.id} style={styles.container}>
       <Text style={[completed ? styles.completed : styles.itemText]}>
         {item.item}
       </Text>
