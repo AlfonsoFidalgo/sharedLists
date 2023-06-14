@@ -55,8 +55,8 @@ const listSlice = createSlice({
       list.items = uncompletedItems;
     },
     removeList(state, action) {
-      const index = state.indexOf(action.payload);
-      state.splice(index, 1);
+      const { listId } = action.payload;
+      return state.filter((lst) => lst.id !== listId);
     },
   },
 });
@@ -67,6 +67,6 @@ const store = configureStore({
   },
 });
 
-export const { addList, addItem, toggleCompleteItem, removeItem } =
+export const { addList, addItem, toggleCompleteItem, removeItem, removeList } =
   listSlice.actions;
 export { store };

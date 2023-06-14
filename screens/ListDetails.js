@@ -1,7 +1,16 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useRoute } from '@react-navigation/native';
-import { View, StyleSheet, ScrollView, Button, Text } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  ScrollView,
+  Button,
+  Text,
+  TouchableOpacity,
+  Dimensions,
+} from 'react-native';
+import { FontAwesome } from '@expo/vector-icons';
 
 import ListDetailItem from '../components/ListDetailItem';
 import { toggleCompleteItem, removeItem } from '../store';
@@ -45,6 +54,14 @@ function ListDetails({ navigation }) {
   return (
     <View style={styles.container}>
       {content}
+      <TouchableOpacity
+        style={styles.addButton}
+        onPress={() =>
+          navigation.navigate('AddItem', { listId: route.params.id })
+        }
+      >
+        <FontAwesome name="plus" size={24} color="white" />
+      </TouchableOpacity>
       <View style={styles.separator} />
 
       <View style={styles.buttonContainer}>
@@ -98,5 +115,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginLeft: 64,
     marginRight: 64,
+  },
+  addButton: {
+    marginLeft: Dimensions.get('window').width / 4,
+    backgroundColor: 'orange',
+    borderRadius: 50,
+    width: '50%',
+    height: 75,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });

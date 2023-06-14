@@ -4,7 +4,6 @@ function ListDetailItem({ item, onPress, completed }) {
   const toggleComplete = () => {
     onPress(item);
   };
-  console.log(item);
 
   return (
     <View key={item.id} style={styles.container}>

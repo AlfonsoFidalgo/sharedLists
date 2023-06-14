@@ -19,7 +19,6 @@ function AddItem({ navigation, route }) {
     const action = addItem({ newItem, listId: route.params.listId });
     dispatch(action);
     setNewItem('');
-    console.log(route);
   };
 
   return (
