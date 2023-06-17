@@ -21,17 +21,16 @@ function ListForm() {
     setListDescription(input);
   };
 
-  const handleAddList = () => {
+  const handleAddList = async () => {
     const newList = {
-      // id: Math.round(Math.random() * 99999),
       name: listName,
       participants: 1,
       description: listDescription,
       items: [],
     };
-    const action = addList(newList);
+    const newListId = await storeList(newList);
+    const action = addList({ ...newList, id: newListId });
     dispatch(action);
-    storeList(newList);
     navigation.goBack();
   };
 

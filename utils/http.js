@@ -2,8 +2,9 @@ import axios from 'axios';
 const URL =
   'https://shared-lists-5b9fc-default-rtdb.europe-west1.firebasedatabase.app';
 
-export function storeList(listData) {
-  axios.post(`${URL}/lists.json`, listData);
+export async function storeList(listData) {
+  const response = await axios.post(`${URL}/lists.json`, listData);
+  return response.data.name; //id of the new list
 }
 
 export async function fetchLists() {
