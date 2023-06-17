@@ -33,6 +33,9 @@ const listSlice = createSlice({
         return list;
       });
     },
+    setLists(state, action) {
+      return action.payload;
+    },
     toggleCompleteItem(state, action) {
       const { listId, item } = action.payload;
 
@@ -67,6 +70,12 @@ const store = configureStore({
   },
 });
 
-export const { addList, addItem, toggleCompleteItem, removeItem, removeList } =
-  listSlice.actions;
+export const {
+  addList,
+  addItem,
+  toggleCompleteItem,
+  removeItem,
+  removeList,
+  setLists,
+} = listSlice.actions;
 export { store };

@@ -1,13 +1,29 @@
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { FlatList, View, StyleSheet, TouchableOpacity } from 'react-native';
 import { useSelector } from 'react-redux';
 import { FontAwesome } from '@expo/vector-icons';
 
+import { setLists } from '../store';
+import { fetchLists } from '../utils/http';
 import ListItem from '../components/ListItem';
 
 function ListsScreen({ navigation }) {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    async function getLists() {
+      const lists = await fetchLists();
+      const action = setLists(lists);
+      dispatch(action);
+    }
+    getLists();
+  }, []);
+
   const lists = useSelector((state) => {
     return state.lists;
   });
+
   return (
     <View style={styles.container}>
       <FlatList
