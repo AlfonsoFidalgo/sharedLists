@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 
+import { storeList } from '../utils/http';
 import { addList } from '../store';
 import Input from '../components/Input';
 
@@ -22,7 +23,7 @@ function ListForm() {
 
   const handleAddList = () => {
     const newList = {
-      id: Math.round(Math.random() * 99999),
+      // id: Math.round(Math.random() * 99999),
       name: listName,
       participants: 1,
       description: listDescription,
@@ -30,6 +31,7 @@ function ListForm() {
     };
     const action = addList(newList);
     dispatch(action);
+    storeList(newList);
     navigation.goBack();
   };
 

@@ -15,10 +15,10 @@ import IconButton from './components/IconButton';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-  const handleRemoveList = (listId) => {
-    const action = removeList({ listId });
-    dispatch(action);
-  };
+  // const handleRemoveList = (listId) => {
+  //   const action = removeList({ listId });
+  //   dispatch(action);
+  // };
 
   return (
     <SafeAreaView style={styles.safeArea}>

@@ -3,17 +3,17 @@ import { configureStore, createSlice } from '@reduxjs/toolkit';
 const listSlice = createSlice({
   name: 'list',
   initialState: [
-    {
-      id: 1,
-      name: 'Groceries',
-      participants: 2,
-      description:
-        'Food that we need to buy to provide our bodies with the right nutrients to sustain life',
-      items: [
-        { item: 'Onions', completed: false, id: 34 },
-        { item: 'Bread', completed: false, id: 57 },
-      ],
-    },
+    // {
+    //   id: 1,
+    //   name: 'Groceries',
+    //   participants: 2,
+    //   description:
+    //     'Food that we need to buy to provide our bodies with the right nutrients to sustain life',
+    //   items: [
+    //     { item: 'Onions', completed: false, id: 34 },
+    //     { item: 'Bread', completed: false, id: 57 },
+    //   ],
+    // },
   ],
   reducers: {
     addList(state, action) {
